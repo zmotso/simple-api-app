@@ -12,5 +12,5 @@ go run .
 From docker image:
 
 ```sh
-docker run -pd 8080:8080 zmotso/simple-api-app:0.0.1
+docker run -pd 8080:8080 zmotso/simple-api-app:0.0.2
 ```
