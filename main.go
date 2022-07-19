@@ -2,7 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
+	"log"
 	"net/http"
 	"os"
 )
@@ -12,11 +12,12 @@ type response struct {
 }
 
 func base(w http.ResponseWriter, req *http.Request) {
+	log.Println("Processing request...")
 	resp := response{Data: "simple api app"}
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	if err := json.NewEncoder(w).Encode(resp); err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		w.WriteHeader(http.StatusInternalServerError)
 	}
 }
@@ -30,7 +31,6 @@ func main() {
 	}
 
 	if err := http.ListenAndServe(port, nil); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		log.Fatalln(err)
 	}
 }
